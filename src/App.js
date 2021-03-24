@@ -9,24 +9,31 @@ class App extends Component {
     super();
     this.state = {
       movies: movieData.movies,
-      currentMovie: []
+      currentMovie: [],
+      homeView: true
     }
   }
 
   clickedMovie = (id) => {
-    console.log(id)
     const matchingMovie = this.state.movies.find(movie => id === movie.id)
-    this.setState({ currentMovie: [matchingMovie] })
+    this.setState({ currentMovie: [matchingMovie], homeView: false })
+  }
+
+  returnHome = () => {
+    this.setState({ currentMovie: [], homeView: true })
   }
 
   render() {
     return (
       <div className="App" >
         <h1>Rancid Tomatillos</h1>
+        {!this.state.homeView &&
+          <button onClick={this.returnHome}>Home</button>
+        }
         {!this.state.currentMovie.length &&
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie}/>
         }
-        {this.state.currentMovie.length &&
+        {!this.state.homeView &&
           <MovieInfo />
           }
       </div>

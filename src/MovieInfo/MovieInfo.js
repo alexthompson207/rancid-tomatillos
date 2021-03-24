@@ -10,21 +10,22 @@ class MovieInfo extends Component {
   }
 
   render() {
+    const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.movieInfo
     return(
       <section className="movie-info-section">
-        <h1>Title</h1>
+        <h1>{title}</h1>
         <article className="movie-details">
-          <li>genre</li>
-          <li>release date</li>
-          <li>runtime</li>
-          <li>budget</li>
-          <li>revenue</li>
+          <li>{genres[0].name}</li>
+          <li>{release_date}</li>
+          <li>{runtime}</li>
+          <li>{budget}</li>
+          <li>{revenue}</li>
         </article>
         <article className="movied-description">
           <img className="backdrop-iimage" src=""/>
-          <h2>tagline</h2>
-          <h2>rating</h2>
-          <p>description</p>
+          <h2>{tagline}</h2>
+          <h2>{average_rating}</h2>
+          <p>{overview}</p>
         </article>
       </section>
     )
