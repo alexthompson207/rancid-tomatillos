@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import movieData from './data';
 import MoviesView from './MoviesView/MoviesView';
+import MovieInfo from './MovieInfo/MovieInfo';
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,7 @@ class App extends Component {
   clickedMovie = (id) => {
     console.log(id)
     const matchingMovie = this.state.movies.find(movie => id === movie.id)
-    this.setState({ currentMovie: matchingMovie })
+    this.setState({ currentMovie: [matchingMovie] })
   }
 
   render() {
@@ -25,6 +26,9 @@ class App extends Component {
         {!this.state.currentMovie.length &&
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie}/>
         }
+        {this.state.currentMovie.length &&
+          <MovieInfo />
+          }
       </div>
     );
 
