@@ -1,0 +1,12 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 20%;
+  margin: 10px;
+}
+
+.movie-image {
+  
+  width: 100%;
+}
