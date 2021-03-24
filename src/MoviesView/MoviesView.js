@@ -17,7 +17,7 @@ const MoviesView = ({ movieList }) => {
   })
 
   return (
-    <section>
+    <section className='movies-view'>
       {movieCards}
     </section>
   )
