@@ -3,6 +3,7 @@ import './App.css';
 import movieData from './data';
 import MoviesView from './MoviesView/MoviesView';
 import MovieInfo from './MovieInfo/MovieInfo';
+import Nav from './Nav/Nav';
 
 class App extends Component {
   constructor() {
@@ -26,16 +27,14 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-        <h1>Rancid Tomatillos</h1>
-        {!this.state.homeView &&
-          <button onClick={this.returnHome}>Home</button>
-        }
+        <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
+
         {!this.state.currentMovie.length &&
-          <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie}/>
+          <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />
         }
         {!this.state.homeView &&
           <MovieInfo />
-          }
+        }
       </div>
     );
 
