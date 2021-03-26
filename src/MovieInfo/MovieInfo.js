@@ -26,7 +26,7 @@ class MovieInfo extends Component {
             </ul>
           </article>
           <article className="movie-description">
-            <img className="backdrop-image" src={backdrop_path} />
+            <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
             <h2 className='movie-info-title'>{tagline}</h2>
             <h3 className='movie-info-rating'>Rating: {average_rating}</h3>
             <p className='movie-info-overview'>{overview}</p>
