@@ -1,16 +1,13 @@
 import React from 'react';
+import './Nav.css'
 
 const Nav = (props) => {
 
   return (
-    <div>
-      <div>
-        <h1>Rancid Tomatillos</h1>
-      </div>
-      <div>
-        {!props.homeView && <button onClick={props.returnHome}>Home</button>}
-      </div>
-    </div>
+    <header className='nav'>
+      <h1 className='title'>Rancid Tomatillos</h1>
+      {!props.homeView && <button className='home-button' onClick={props.returnHome}>Home</button>}
+    </header>
   )
 }
 
