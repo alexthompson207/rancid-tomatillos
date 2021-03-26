@@ -13,10 +13,10 @@ class MovieInfo extends Component {
     const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.movieInfo
     return (
       <section className="movie-info-section">
-        <h1>{title}</h1>
+        <h1 className='movie-info-title'>{title}</h1>
         <div className='movie-info-container'>
           <article className="movie-info">
-            <h2 className='movie-info-title'>Movie Info</h2>
+            <h2 className='list-title'>Movie Info</h2>
             <ul className='movie-info-list'>
               <li><b>Genres:</b> {genres[0].name}</li>
               <li><b>Release Date:</b> {release_date}</li>
