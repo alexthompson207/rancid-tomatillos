@@ -19,7 +19,7 @@ const MovieCard = ({ image, title, rating, id, movieClicked }) => {
       <section className='movie-details'>
         <h2 className='movie-title'>{title}</h2>
         <div className='rating-container'>
-          <img className='movie-icon' src={icon}></img>
+          <img className='movie-icon' alt='tomato icon' src={icon}></img>
           <p className='movie-rating'>{Math.round(rating * 10)}%</p>
         </div>
       </section>

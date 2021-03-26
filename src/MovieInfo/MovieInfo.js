@@ -13,20 +13,25 @@ class MovieInfo extends Component {
     const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.movieInfo
     return (
       <section className="movie-info-section">
-        <h1>{title}</h1>
-        <article className="movie-details">
-          <li>{genres[0].name}</li>
-          <li>{release_date}</li>
-          <li>{runtime}</li>
-          <li>{budget}</li>
-          <li>{revenue}</li>
-        </article>
-        <article className="movied-description">
-          <img className="backdrop-image" src={backdrop_path} />
-          <h2>{tagline}</h2>
-          <h2>{average_rating}</h2>
-          <p>{overview}</p>
-        </article>
+        <h1 className='movie-info-title'>{title}</h1>
+        <div className='movie-info-container'>
+          <article className="movie-info">
+            <h2 className='list-title'>Movie Info</h2>
+            <ul className='movie-info-list'>
+              <li><b>Genres:</b> {genres[0].name}</li>
+              <li><b>Release Date:</b> {release_date}</li>
+              <li><b>Runtime:</b> {runtime} minutes</li>
+              <li><b>Budget:</b> ${budget}</li>
+              <li><b>Revenue:</b> ${revenue}</li>
+            </ul>
+          </article>
+          <article className="movie-description">
+            <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
+            <h2 className='movie-info-title'>{tagline}</h2>
+            <h3 className='movie-info-rating'>Rating: {average_rating}</h3>
+            <p className='movie-info-overview'>{overview}</p>
+          </article>
+        </div>
       </section>
     )
   }
