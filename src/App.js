@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import movieData from './data';
 import MoviesView from './MoviesView/MoviesView';
 import MovieInfo from './MovieInfo/MovieInfo';
 import Nav from './Nav/Nav';
@@ -16,12 +15,13 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-    .then(response => response.json())
-    .then(data => {
-      this.setState( {movies: data.movies} )
-    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ movies: data.movies })
+      })
+      .catch(error => console.log(error))
   }
 
   clickedMovie = (id) => {

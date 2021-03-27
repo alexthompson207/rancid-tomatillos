@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Error from '../Error/Error';
 import './MovieInfo.css';
 
 class MovieInfo extends Component {
@@ -6,26 +7,32 @@ class MovieInfo extends Component {
     super(props);
     this.state = {
       currentMovie: {},
-      movieId: this.props.currentMovieId
+      movieId: this.props.currentMovieId,
+      error: ''
     }
   }
 
   componentDidMount() {
     console.log(this.state.movieId)
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({ currentMovie: {...data.movie} })
-      console.log(this.state.currentMovie)
-    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ currentMovie: { ...data.movie } })
+      })
+      .catch(error => this.setState({ error: error.message }))
   }
 
   render() {
-    console.log(this.state.currentMovie)
     const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie
-    if(!this.state.currentMovie.title) {
-      return(
-        <h1>Loading</h1>
+    if (this.state.error) {
+      return (
+        <Error />
+      )
+    }
+
+    if (!this.state.currentMovie.title) {
+      return (
+        <h1>Loading...</h1>
       )
     }
     return (
