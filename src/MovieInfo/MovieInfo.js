@@ -8,6 +8,7 @@ class MovieInfo extends Component {
     this.state = {
       currentMovie: {},
       movieId: this.props.currentMovieId,
+      movieTrailer: {},
       error: ''
     }
   }
@@ -19,6 +20,12 @@ class MovieInfo extends Component {
         this.setState({ currentMovie: { ...data.movie } })
       })
       .catch(error => this.setState({ error: error.message }))
+
+      fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}/videos`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ movieTrailer: {...data.videos[0]}})
+      })
   }
 
   formatCosts = (number) => {
@@ -55,6 +62,12 @@ class MovieInfo extends Component {
                   <li><b>Budget:</b> {this.formatCosts(budget)}</li>
                   <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
                 </ul>
+                <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
+                  frameborder='0'
+                  allow='autoplay; encrypted-media'
+                  allowfullscreen
+                  title='video'
+                />
               </article>
               <article className="movie-description">
                 <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
