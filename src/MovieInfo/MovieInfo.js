@@ -22,8 +22,21 @@ class MovieInfo extends Component {
       .catch(error => this.setState({ error: error.message }))
   }
 
+  formatCosts = (number) => {
+    if (number === 0) {
+      return `Not Reported`;
+    }
+    const trimmedTotal = number.toFixed(2);
+    console.log(trimmedTotal);
+    let totalFormatted = trimmedTotal.toString().split('.');
+    totalFormatted[0] = totalFormatted[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return '$' + totalFormatted.join('.');
+  }
+
   render() {
     const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie
+
+
 
     return (
       <>
@@ -40,14 +53,14 @@ class MovieInfo extends Component {
                   <li><b>Genres:</b> {genres.join(', ')}</li>
                   <li><b>Release Date:</b> {release_date}</li>
                   <li><b>Runtime:</b> {runtime} minutes</li>
-                  <li><b>Budget:</b> ${budget}</li>
-                  <li><b>Revenue:</b> ${revenue}</li>
+                  <li><b>Budget:</b> {this.formatCosts(budget)}</li>
+                  <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
                 </ul>
               </article>
               <article className="movie-description">
                 <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
                 <h2 className='movie-info-title'>{tagline}</h2>
-                <h3 className='movie-info-rating'>Rating: {average_rating}</h3>
+                <h3 className='movie-info-rating'>Rating: {Math.round(average_rating * 10)}%</h3>
                 <p className='movie-info-overview'>{overview}</p>
               </article>
             </div>
