@@ -13,7 +13,6 @@ class MovieInfo extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.movieId)
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}`)
       .then(response => response.json())
       .then(data => {
