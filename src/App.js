@@ -3,15 +3,16 @@ import './App.css';
 import MoviesView from './MoviesView/MoviesView';
 import MovieInfo from './MovieInfo/MovieInfo';
 import Nav from './Nav/Nav';
+import Error from './Error/Error';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       movies: [],
-      currentMovie: {},
       currentMovieId: 0,
-      homeView: true
+      homeView: true,
+      error: ''
     }
   }
 
@@ -21,7 +22,7 @@ class App extends Component {
       .then(data => {
         this.setState({ movies: data.movies })
       })
-      .catch(error => console.log(error))
+      .catch(error => this.setState({ error: error.message }))
   }
 
   clickedMovie = (id) => {
@@ -33,10 +34,12 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App" >
+        {this.state.error && <Error />}
         <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
-
+        {!this.state.movies.length && <h1>Loading...</h1>}
         {this.state.homeView &&
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />
         }
