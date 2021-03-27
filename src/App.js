@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       movies: [],
       currentMovie: {},
+      currentMovieId: 0,
       homeView: true
     }
   }
@@ -24,11 +25,7 @@ class App extends Component {
   }
 
   clickedMovie = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({ currentMovie: data, homeView: false })
-    })
+    this.setState({ currentMovieId: id, homeView: false })
   }
 
   returnHome = () => {
@@ -44,7 +41,7 @@ class App extends Component {
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />
         }
         {!this.state.homeView &&
-          <MovieInfo currentMovie={this.state.currentMovie}/>
+          <MovieInfo currentMovieId={this.state.currentMovieId} />
         }
       </div>
     );

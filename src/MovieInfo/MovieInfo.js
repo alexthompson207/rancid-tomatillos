@@ -2,15 +2,32 @@ import React, { Component } from 'react';
 import './MovieInfo.css';
 
 class MovieInfo extends Component {
-  constructor() {
-    super();
-    // this.state = {
-    //   movieInfo: { id: 1, title: "Fake Movie Title", poster_path: "https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg", backdrop_path: "https://image.tmdb.org/t/p/original//oazPqs1z78LcIOFslbKtJLGlueo.jpg", release_date: "2019-12-04", overview: "Some overview that is full of buzzwords to attempt to entice you to watch this movie! Explosions! Drama! True love! Robots! A cute dog!", average_rating: 6, genres: [{ id: 18, name: "Drama" }], budget: 63000000, revenue: 100853753, runtime: 139, tagline: "It's a movie!" }
-    // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentMovie: {},
+      movieId: this.props.currentMovieId
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.state.movieId)
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ currentMovie: {...data.movie} })
+      console.log(this.state.currentMovie)
+    })
   }
 
   render() {
-    const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.props.currentMovie.movie
+    console.log(this.state.currentMovie)
+    const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie
+    if(!this.state.currentMovie.title) {
+      return(
+        <h1>Loading</h1>
+      )
+    }
     return (
       <section className="movie-info-section">
         <h1 className='movie-info-title'>{title}</h1>
@@ -18,7 +35,7 @@ class MovieInfo extends Component {
           <article className="movie-info">
             <h2 className='list-title'>Movie Info</h2>
             <ul className='movie-info-list'>
-              <li><b>Genres:</b> {genres[0].name}</li>
+              <li><b>Genres:</b> {genres.join(', ')}</li>
               <li><b>Release Date:</b> {release_date}</li>
               <li><b>Runtime:</b> {runtime} minutes</li>
               <li><b>Budget:</b> ${budget}</li>
