@@ -9,15 +9,23 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: movieData.movies,
-      currentMovie: [],
+      movies: [],
+      currentMovie: {},
+      currentMovieId: 0,
       homeView: true
     }
   }
 
+  componentDidMount () {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+    .then(response => response.json())
+    .then(data => {
+      this.setState( {movies: data.movies} )
+    })
+  }
+
   clickedMovie = (id) => {
-    const matchingMovie = this.state.movies.find(movie => id === movie.id)
-    this.setState({ currentMovie: [matchingMovie], homeView: false })
+    this.setState({ currentMovieId: id, homeView: false })
   }
 
   returnHome = () => {
@@ -29,11 +37,11 @@ class App extends Component {
       <div className="App" >
         <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
 
-        {!this.state.currentMovie.length &&
+        {this.state.homeView &&
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />
         }
         {!this.state.homeView &&
-          <MovieInfo />
+          <MovieInfo currentMovieId={this.state.currentMovieId} />
         }
       </div>
     );
