@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Error from '../Error/Error';
 import './MovieInfo.css';
+import moment from 'moment'
 
 class MovieInfo extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class MovieInfo extends Component {
                 <h2 className='list-title'>Movie Info</h2>
                 <ul className='movie-info-list'>
                   <li><b>Genres:</b> {genres.join(', ')}</li>
-                  <li><b>Release Date:</b> {release_date}</li>
+                  <li><b>Release Date:</b> {moment(release_date).format('MMM Do YYYY')}</li>
                   <li><b>Runtime:</b> {runtime} minutes</li>
                   <li><b>Budget:</b> {this.formatCosts(budget)}</li>
                   <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
