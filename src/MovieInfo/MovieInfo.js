@@ -22,10 +22,10 @@ class MovieInfo extends Component {
       })
       .catch(error => this.setState({ error: error.message }))
 
-      fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}/videos`)
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}/videos`)
       .then(response => response.json())
       .then(data => {
-        this.setState({ movieTrailer: {...data.videos[0]}})
+        this.setState({ movieTrailer: { ...data.videos[0] } })
       })
   }
 
@@ -51,28 +51,32 @@ class MovieInfo extends Component {
         {!this.state.currentMovie.title && !this.state.error && <h1>Loading...</h1>
         }
         {this.state.currentMovie.title && !this.state.error &&
-          <section className="movie-info-section">
+          <section className='movie-info-section'>
             <h1 className='movie-info-title'>{title}</h1>
             <div className='movie-info-container'>
-              <article className="movie-info">
-                <h2 className='list-title'>Movie Info</h2>
-                <ul className='movie-info-list'>
-                  <li><b>Genres:</b> {genres.join(', ')}</li>
-                  <li><b>Release Date:</b> {moment(release_date).format('MMM Do YYYY')}</li>
-                  <li><b>Runtime:</b> {runtime} minutes</li>
-                  <li><b>Budget:</b> {this.formatCosts(budget)}</li>
-                  <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
-                </ul>
-                <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
-                  frameborder='0'
-                  allow='autoplay; encrypted-media'
-                  allowfullscreen
-                  title='video'
-                />
+              <article className="movie-info-left">
+                <div className='movie-info'>
+                  <h2 className='list-title'>Movie Info</h2>
+                  <ul className='movie-info-list'>
+                    <li><b>Genres:</b> {genres.join(', ')}</li>
+                    <li><b>Release Date:</b> {moment(release_date).format('MMM Do YYYY')}</li>
+                    <li><b>Runtime:</b> {runtime} minutes</li>
+                    <li><b>Budget:</b> {this.formatCosts(budget)}</li>
+                    <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
+                  </ul>
+                </div>
+                <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
+                <div></div>
               </article>
               <article className="movie-description">
-                <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
-                <h2 className='movie-info-title'>{tagline}</h2>
+                <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
+                  frameBorder='0'
+                  allow='autoplay; encrypted-media'
+                  allowFullScreen
+                  title='video'
+                  alt={`${title} movie trailer`}
+                />
+                <h2 className='movie-info-tagline'>{tagline}</h2>
                 <h3 className='movie-info-rating'>Rating: {Math.round(average_rating * 10)}%</h3>
                 <p className='movie-info-overview'>{overview}</p>
               </article>
