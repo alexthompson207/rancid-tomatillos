@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Error from '../Error/Error';
 import './MovieInfo.css';
+import moment from 'moment'
 
 class MovieInfo extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class MovieInfo extends Component {
     this.state = {
       currentMovie: {},
       movieId: this.props.currentMovieId,
+      movieTrailer: {},
       error: ''
     }
   }
@@ -19,6 +21,12 @@ class MovieInfo extends Component {
         this.setState({ currentMovie: { ...data.movie } })
       })
       .catch(error => this.setState({ error: error.message }))
+
+      fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}/videos`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ movieTrailer: {...data.videos[0]}})
+      })
   }
 
   formatCosts = (number) => {
@@ -50,11 +58,17 @@ class MovieInfo extends Component {
                 <h2 className='list-title'>Movie Info</h2>
                 <ul className='movie-info-list'>
                   <li><b>Genres:</b> {genres.join(', ')}</li>
-                  <li><b>Release Date:</b> {release_date}</li>
+                  <li><b>Release Date:</b> {moment(release_date).format('MMM Do YYYY')}</li>
                   <li><b>Runtime:</b> {runtime} minutes</li>
                   <li><b>Budget:</b> {this.formatCosts(budget)}</li>
                   <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
                 </ul>
+                <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
+                  frameborder='0'
+                  allow='autoplay; encrypted-media'
+                  allowfullscreen
+                  title='video'
+                />
               </article>
               <article className="movie-description">
                 <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
