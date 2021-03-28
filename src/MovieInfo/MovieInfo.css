@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: #1b5e20;
 }
 
 .movie-info-title {
   font-size: 45px;
   font-weight: bold;
   margin: 20px;
+  color: #1e6f5c;
 }
 
 .movie-info-container{
@@ -64,15 +66,18 @@
   font-style: italic;
   margin-bottom: 0;
   margin-top: 10px;
+  color: #40394a;
 }
 
 .movie-info-rating{
   margin: 10px 0 0 0;
   padding-bottom: 5px;
+  color: #40394a;
 }
 
 .movie-info-overview{
   margin: 0;
+  color: #40394a;
 }
 
 .movie-description {
