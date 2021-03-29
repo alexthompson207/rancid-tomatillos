@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div className="App" >
         <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
-        {this.state.error && <Error />}
+        {this.state.error && <Error error={this.state.error} />}
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
         {this.state.homeView &&
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />

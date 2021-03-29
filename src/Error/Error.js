@@ -1,9 +1,14 @@
 import React from 'react';
 import './Error.css';
 
-const Error = () => {
+const Error = ({ error, errorTrailer }) => {
   return (
-    <h1 className='error'>Opps! Something went wrong, please refresh and try again.</h1>
+    <>
+      { error &&
+        <h1 className='error'>Opps! Something went wrong, please refresh and try again.</h1>
+      }
+      {errorTrailer && <h1 className='errorTrailer'>broken</h1>}
+    </>
   )
 }
 

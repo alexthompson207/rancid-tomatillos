@@ -10,7 +10,8 @@ class MovieInfo extends Component {
       currentMovie: {},
       movieId: this.props.currentMovieId,
       movieTrailer: {},
-      error: ''
+      error: '',
+      errorTrailer: ''
     }
   }
 
@@ -27,6 +28,7 @@ class MovieInfo extends Component {
       .then(data => {
         this.setState({ movieTrailer: { ...data.videos[0] } })
       })
+      .catch(error => this.setState({ errorTrailer: error.message }))
   }
 
   formatCosts = (number) => {
@@ -47,7 +49,7 @@ class MovieInfo extends Component {
 
     return (
       <>
-        {this.state.error && <Error />}
+        {this.state.error && <Error error={this.state.error} />}
         {!this.state.currentMovie.title && !this.state.error && <h1>Loading...</h1>
         }
         {this.state.currentMovie.title && !this.state.error &&
@@ -69,13 +71,15 @@ class MovieInfo extends Component {
                 <div></div>
               </article>
               <article className="movie-description">
-                <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
-                  frameBorder='0'
-                  allow='autoplay; encrypted-media'
-                  allowFullScreen
-                  title='video'
-                  alt={`${title} movie trailer`}
-                />
+                {this.state.errorTrailer && <Error errorTrailer={this.state.errorTrailer} />}
+                {!this.state.errorTrailer &&
+                  <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
+                    frameBorder='0'
+                    allow='autoplay; encrypted-media'
+                    allowFullScreen
+                    title='video'
+                    alt={`${title} movie trailer`}
+                  />}
                 <h2 className='movie-info-tagline'>{tagline}</h2>
                 <h3 className='movie-info-rating'>Rating: {Math.round(average_rating * 10)}%</h3>
                 <p className='movie-info-overview'>{overview}</p>
