@@ -23,7 +23,7 @@ class MovieInfo extends Component {
       })
       .catch(error => this.setState({ error: error.message }))
 
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/moviess/${this.state.movieId}/videos`)
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}/videos`)
       .then(response => response.json())
       .then(data => {
         this.setState({ movieTrailer: { ...data.videos[0] } })

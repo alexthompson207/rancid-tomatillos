@@ -1,14 +1,15 @@
 import React from 'react';
 import './Error.css';
 import brokenVideo from '../images/broken-video.svg';
+import oops from '../images/oops.svg';
 
 const Error = ({ error, errorTrailer }) => {
   return (
     <>
       { error &&
         <>
-          <img className='movie-image' src='./images/broken-video.png' alt='server error icon'></img>
-          <h1 className='error'>Opps! Something went wrong, please refresh and try again.</h1>
+          <img className='error-icon' src={oops} alt='unhappy oops face icon'></img>
+          <h1 className='error-message'>Something went wrong, please refresh and try again.</h1>
         </>
       }
       {errorTrailer &&
