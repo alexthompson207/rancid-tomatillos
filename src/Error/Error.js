@@ -14,7 +14,7 @@ const Error = ({ error, errorTrailer }) => {
       }
       {errorTrailer &&
         <div className='error-box'>
-          <img className='error-trailer' src={brokenVideo} alt='broken video image'></img>
+          <img className='error-trailer' src={brokenVideo} alt='broken video'></img>
           <p className='error-trailer-message'>Opps! This video isn't working, please refresh and try again</p>
         </div>
       }

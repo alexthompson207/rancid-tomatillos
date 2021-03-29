@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Error from '../Error/Error';
 import './MovieInfo.css';
 import moment from 'moment'
+import { getMovieByID, getTrailerByID } from '../apiCalls';
 
 class MovieInfo extends Component {
   constructor(props) {
@@ -16,15 +17,13 @@ class MovieInfo extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}`)
-      .then(response => response.json())
+    getMovieByID(this.state.movieId)
       .then(data => {
         this.setState({ currentMovie: { ...data.movie } })
       })
       .catch(error => this.setState({ error: error.message }))
 
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.movieId}/videos`)
-      .then(response => response.json())
+    getTrailerByID(this.state.movieId)
       .then(data => {
         this.setState({ movieTrailer: { ...data.videos[0] } })
       })
@@ -36,14 +35,13 @@ class MovieInfo extends Component {
       return `Not Reported`;
     }
     const trimmedTotal = number.toFixed(2);
-    console.log(trimmedTotal);
     let totalFormatted = trimmedTotal.toString().split('.');
     totalFormatted[0] = totalFormatted[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     return '$' + totalFormatted.join('.');
   }
 
   render() {
-    const { poster_path, backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie
+    const { backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie
 
 
 
