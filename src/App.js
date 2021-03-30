@@ -24,14 +24,6 @@ class App extends Component {
       .catch(error => this.setState({ error: error.message }))
   }
 
-  toggleHomeButton = () => {
-    let homeView = true
-    if(this.currentMovieId > 0){
-      homeView = false
-    }
-    return homeView
-  }
-
   render() {
 
     return (
@@ -41,7 +33,7 @@ class App extends Component {
         <Route exact path='/' render={() => {
           return(
             <>
-              <Nav returnHome={this.toggleHomeButton} />
+              <Nav returnHome={true} />
               <MoviesView movieList={this.state.movies} />
             </>
             )
