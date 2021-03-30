@@ -5,6 +5,7 @@ import MovieInfo from './MovieInfo/MovieInfo';
 import Nav from './Nav/Nav';
 import Error from './Error/Error';
 import { getAllMovies } from './apiCalls';
+import { Route, Link, Switch } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -40,12 +41,11 @@ class App extends Component {
         <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
         {this.state.error && <Error error={this.state.error} />}
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
-        {this.state.homeView &&
-          <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />
-        }
-        {!this.state.homeView &&
-          <MovieInfo currentMovieId={this.state.currentMovieId} />
-        }
+        <Route exact path='/' render={() => <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />} />
+        <Route exact path='/:id' render={({match}) => {
+          const { id } = match.params;
+          return <MovieInfo currentMovieId={id} />}
+        } />
       </div>
     );
 
