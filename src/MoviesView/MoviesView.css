@@ -1,6 +1,7 @@
 .movies-view {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: white;
+  margin: 5% 0;
 }

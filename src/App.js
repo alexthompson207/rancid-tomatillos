@@ -4,6 +4,7 @@ import MoviesView from './MoviesView/MoviesView';
 import MovieInfo from './MovieInfo/MovieInfo';
 import Nav from './Nav/Nav';
 import Error from './Error/Error';
+import { getAllMovies } from './apiCalls';
 
 class App extends Component {
   constructor() {
@@ -17,8 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-      .then(response => response.json())
+    getAllMovies()
       .then(data => {
         this.setState({ movies: data.movies })
       })
@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div className="App" >
         <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
-        {this.state.error && <Error />}
+        {this.state.error && <Error error={this.state.error} />}
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
         {this.state.homeView &&
           <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />
