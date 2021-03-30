@@ -12,8 +12,6 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      currentMovieId: 0,
-      homeView: true,
       error: ''
     }
   }
@@ -26,25 +24,37 @@ class App extends Component {
       .catch(error => this.setState({ error: error.message }))
   }
 
-  clickedMovie = (id) => {
-    this.setState({ currentMovieId: id, homeView: false })
-  }
-
-  returnHome = () => {
-    this.setState({ currentMovie: [], homeView: true })
+  toggleHomeButton = () => {
+    let homeView = true
+    if(this.currentMovieId > 0){
+      homeView = false
+    }
+    return homeView
   }
 
   render() {
 
     return (
       <div className="App" >
-        <Nav returnHome={this.returnHome} homeView={this.state.homeView} />
         {this.state.error && <Error error={this.state.error} />}
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
-        <Route exact path='/' render={() => <MoviesView movieList={this.state.movies} movieClicked={this.clickedMovie} />} />
+        <Route exact path='/' render={() => {
+          return(
+            <>
+              <Nav returnHome={this.toggleHomeButton} />
+              <MoviesView movieList={this.state.movies} />
+            </>
+            )
+          }
+        } />
         <Route exact path='/:id' render={({match}) => {
           const { id } = match.params;
-          return <MovieInfo currentMovieId={id} />}
+          return (
+            <>
+              <Nav />
+              <MovieInfo currentMovieId={id} />
+            </>
+          )}
         } />
       </div>
     );
