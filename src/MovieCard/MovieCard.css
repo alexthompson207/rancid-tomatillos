@@ -44,3 +44,7 @@
   /* width: 20.5% */
   transform: scale(1.05);
 }
+
+a {
+  text-decoration: none;
+}
