@@ -2,6 +2,7 @@ import React from 'react';
 import './MovieCard.css';
 import tomato from '../images/tomato.svg';
 import badTomato from '../images/tomato-bad.svg';
+import { Link } from 'react-router-dom';
 
 const MovieCard = ({ image, title, rating, id, movieClicked }) => {
 
@@ -14,7 +15,7 @@ const MovieCard = ({ image, title, rating, id, movieClicked }) => {
   }
 
   return (
-    <div onClick={() => movieClicked(id)} className='movie-card' id={id}>
+    <Link to={`/${id}`} key={id} className='movie-card'>
       <img className='movie-image' src={image} alt={title + ' movie poster'}></img>
       <section className='movie-details'>
         <h2 className='movie-title'>{title}</h2>
@@ -23,7 +24,7 @@ const MovieCard = ({ image, title, rating, id, movieClicked }) => {
           <p className='movie-rating'>{Math.round(rating * 10)}%</p>
         </div>
       </section>
-    </div>
+    </Link>
   )
 }
 
