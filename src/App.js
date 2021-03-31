@@ -5,7 +5,7 @@ import MovieInfo from './MovieInfo/MovieInfo';
 import Nav from './Nav/Nav';
 import Error from './Error/Error';
 import { getAllMovies } from './apiCalls';
-import { Route, Link, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -30,15 +30,15 @@ class App extends Component {
         <Nav />
         {this.state.error && <Error error={this.state.error} />}
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
-        <Route exact path='/' render={({ location }) => {
-          return(<MoviesView movieList={this.state.movies} />)
+        <Switch>
+          <Route exact path='/' render={() => <MoviesView movieList={this.state.movies} />} />
+          <Route exact path='/movies/:id' render={({ match }) => {
+            const { id } = match.params;
+            return (<MovieInfo currentMovieId={id} />)
           }
-        } />
-        <Route exact path='/:id' render={({match}) => {
-          const { id } = match.params;
-          return (<MovieInfo currentMovieId={id} />)
-          }
-        } />
+          } />
+          <Route path='*' render={() => <h1>Path doesn't exisit. Please check the url</h1>} />
+        </Switch>
       </div>
     );
 

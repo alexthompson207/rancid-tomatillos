@@ -3,7 +3,6 @@ import Error from '../Error/Error';
 import './MovieInfo.css';
 import moment from 'moment'
 import { getMovieByID, getTrailerByID } from '../apiCalls';
-import { Link } from 'react-router-dom'
 
 class MovieInfo extends Component {
   constructor(props) {
