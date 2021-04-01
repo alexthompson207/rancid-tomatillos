@@ -54,7 +54,7 @@ describe('Movies Info View', () => {
   })
 })
 
-describe.only('Trailer load error', () => {
+describe('Trailer load error', () => {
   beforeEach(() => {
     cy.fixture('movie-info').then((testMovie) => {
       cy.intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', testMovie)
@@ -71,5 +71,21 @@ describe.only('Trailer load error', () => {
 
   it('should contain an error image', () =>{
     cy.get('.error-box').children().first().should('have.class', 'error-trailer')
+  })
+})
+
+describe('Movie info load error', () => {
+  beforeEach(() => {
+    cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {
+      statusCode: 500
+    })
+    cy.visit('http://localhost:3000/movies/694919').wait(1000)
+  })
+  it('should display error message', () => {
+    cy.get('.error-message').contains('Something went wrong, please refresh and try again.')
+  })
+
+  it('should contain an error image', () => {
+    cy.get('img').should('have.class', 'error-icon')
   })
 })
