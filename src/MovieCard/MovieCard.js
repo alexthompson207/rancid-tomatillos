@@ -3,8 +3,9 @@ import './MovieCard.css';
 import tomato from '../images/tomato.svg';
 import badTomato from '../images/tomato-bad.svg';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
-const MovieCard = ({ image, title, rating, id, movieClicked }) => {
+const MovieCard = ({ image, title, rating, id }) => {
 
   let icon = null;
 
@@ -29,3 +30,10 @@ const MovieCard = ({ image, title, rating, id, movieClicked }) => {
 }
 
 export default MovieCard;
+
+MovieCard.propTypes = {
+  image: PropTypes.string,
+  title: PropTypes.string,
+  rating: PropTypes.number,
+  id: PropTypes.number
+}

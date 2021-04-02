@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MoviesView from './MoviesView/MoviesView';
 import MovieInfo from './MovieInfo/MovieInfo';
+import SearchBar from './Search-Bar/Search-Bar';
 import Nav from './Nav/Nav';
 import Error from './Error/Error';
 import { getAllMovies } from './apiCalls';
@@ -12,7 +13,9 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      error: ''
+      error: '',
+      searchMovies: [],
+      search: ''
     }
   }
 
@@ -27,6 +30,17 @@ class App extends Component {
       })
   }
 
+  handleSearch = (event) => {
+    this.setState({ search: event.target.value })
+  }
+
+  searchMovies = (event) => {
+    let value = event.target.value
+    const filteredMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()))
+    this.setState({ searchMovies: filteredMovies })
+
+  }
+
   render() {
     return (
       <div className="App" >
@@ -34,7 +48,14 @@ class App extends Component {
         {this.state.error && <Error error={this.state.error} />}
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
         <Switch>
-          <Route exact path='/' render={() => <MoviesView movieList={this.state.movies} />} />
+          <Route exact path='/' render={() => {
+            return(
+              <>
+                <SearchBar searchMovies={this.searchMovies} handleSearch={this.handleSearch} />
+                <MoviesView movieList={this.state.searchMovies} />
+              </>
+            )}
+          }/>
           <Route exact path='/movies/:id' render={({ match }) => {
             const { id } = match.params;
             return (<MovieInfo currentMovieId={id} />)

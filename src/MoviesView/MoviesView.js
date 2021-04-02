@@ -1,6 +1,7 @@
 import React from 'react';
 import './MoviesView.css';
 import MovieCard from '../MovieCard/MovieCard';
+import PropTypes from 'prop-types'
 
 const MoviesView = ({ movieList }) => {
 
@@ -24,3 +25,7 @@ const MoviesView = ({ movieList }) => {
 }
 
 export default MoviesView;
+
+MoviesView.propTypes = {
+  movieList: PropTypes.array
+}

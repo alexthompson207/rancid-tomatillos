@@ -2,6 +2,7 @@ import React from 'react';
 import './Error.css';
 import brokenVideo from '../images/broken-video.svg';
 import oops from '../images/oops.svg';
+import PropTypes from 'prop-types'
 
 const Error = ({ error, errorTrailer }) => {
 
@@ -24,3 +25,8 @@ const Error = ({ error, errorTrailer }) => {
 }
 
 export default Error;
+
+Error.propTypes = {
+  error: PropTypes.string,
+  errorTrailer: PropTypes.string
+}
