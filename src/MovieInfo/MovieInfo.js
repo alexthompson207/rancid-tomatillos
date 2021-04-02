@@ -3,6 +3,7 @@ import Error from '../Error/Error';
 import './MovieInfo.css';
 import moment from 'moment'
 import { getMovieByID, getTrailerByID } from '../apiCalls';
+import PropTypes from 'prop-types'
 
 class MovieInfo extends Component {
   constructor(props) {
@@ -89,3 +90,7 @@ class MovieInfo extends Component {
 }
 
 export default MovieInfo;
+
+MovieInfo.propTypes = {
+  movieId: PropTypes.number
+}
