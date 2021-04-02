@@ -17,17 +17,17 @@ class MovieInfo extends Component {
   }
 
   componentDidMount() {
-    getMovieByID(this.state.movieId)
+    Promise.allSettled([getMovieByID(this.state.movieId), getTrailerByID(this.state.movieId)])
       .then(data => {
-        this.setState({ currentMovie: { ...data.movie } })
+        if (data[1].status === 'rejected') {
+          this.setState({ currentMovie: { ...data[0].value.movie }, errorTrailer: 'error' })
+        }
+        this.setState({
+          currentMovie: { ...data[0].value.movie },
+          movieTrailer: { ...data[1].value.videos[0] }
+        })
       })
       .catch(error => this.setState({ error: error.message }))
-
-    getTrailerByID(this.state.movieId)
-      .then(data => {
-        this.setState({ movieTrailer: { ...data.videos[0] } })
-      })
-      .catch(error => this.setState({ errorTrailer: error.message }))
   }
 
   formatCosts = (number) => {
@@ -41,17 +41,15 @@ class MovieInfo extends Component {
   }
 
   render() {
-    const { backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie
-
-
+    const { backdrop_path, release_date, overview, average_rating, genres, budget, revenue, tagline, runtime, title, id } = this.state.currentMovie;
 
     return (
       <>
-        {this.state.error && <Error error={this.state.error} />}
+        {this.state.error && !this.state.errorTrailer && <Error error={this.state.error} />}
         {!this.state.currentMovie.title && !this.state.error && <h1>Loading...</h1>
         }
-        {this.state.currentMovie.title && !this.state.error &&
-          <section className='movie-info-section'>
+        {this.state.currentMovie.title &&
+          <section className='movie-info-section' id={id}>
             <h1 className='movie-info-title'>{title}</h1>
             <div className='movie-info-container'>
               <article className="movie-info-left">
@@ -69,8 +67,8 @@ class MovieInfo extends Component {
                 <div></div>
               </article>
               <article className="movie-description">
-                {this.state.errorTrailer && <Error errorTrailer={this.state.errorTrailer} />}
-                {!this.state.errorTrailer &&
+                {this.state.error && <Error errorTrailer={this.state.errorTrailer} />}
+                {!this.state.error &&
                   <iframe className='trailer' src={'https://www.youtube.com/embed/' + this.state.movieTrailer.key}
                     frameBorder='0'
                     allow='autoplay; encrypted-media'

@@ -21,7 +21,10 @@ class App extends Component {
       .then(data => {
         this.setState({ movies: data.movies })
       })
-      .catch(error => this.setState({ error: error.message }))
+      .catch(error => {
+        console.log(error.message)
+        this.setState({ error: error.message })
+      })
   }
 
   render() {

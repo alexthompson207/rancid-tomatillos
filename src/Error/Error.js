@@ -4,6 +4,7 @@ import brokenVideo from '../images/broken-video.svg';
 import oops from '../images/oops.svg';
 
 const Error = ({ error, errorTrailer }) => {
+
   return (
     <>
       { error &&
@@ -12,7 +13,7 @@ const Error = ({ error, errorTrailer }) => {
           <h1 className='error-message'>Something went wrong, please refresh and try again.</h1>
         </>
       }
-      {errorTrailer &&
+      { errorTrailer &&
         <div className='error-box'>
           <img className='error-trailer' src={brokenVideo} alt='broken video'></img>
           <p className='error-trailer-message'>Opps! This video isn't working, please refresh and try again</p>

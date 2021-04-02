@@ -56,11 +56,15 @@ describe('Movies Info View', () => {
 
 describe('Trailer load error', () => {
   beforeEach(() => {
-    cy.fixture('movie-info').then((testMovie) => {
-      cy.intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', testMovie)
-    })
     cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919/videos', {
-      statusCode: 500
+      statusCode: 404
+    })
+    cy.fixture('movie-info').then((testMovie) => {
+      cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {
+        statusCode: 200,
+        body: testMovie,
+        ok: true
+      })
     })
     cy.visit('http://localhost:3000/movies/694919').wait(1000)
   })
@@ -69,7 +73,7 @@ describe('Trailer load error', () => {
     cy.get('.error-box').contains('Opps! This video isn\'t working, please refresh and try again')
   })
 
-  it('should contain an error image', () =>{
+  it('should contain an error image', () => {
     cy.get('.error-box').children().first().should('have.class', 'error-trailer')
   })
 })
