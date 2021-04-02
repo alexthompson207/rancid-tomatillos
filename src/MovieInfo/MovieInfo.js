@@ -18,16 +18,18 @@ class MovieInfo extends Component {
 
   componentDidMount() {
     getMovieByID(this.state.movieId)
-      .then(data => {
-        this.setState({ currentMovie: { ...data.movie } })
+      .then(data => this.setState({ currentMovie: { ...data.movie } }))
+      .catch(error => {
+        console.log(error.message);
+        this.setState({ error: error.message })
       })
-      .catch(error => this.setState({ error: error.message }))
 
     getTrailerByID(this.state.movieId)
-      .then(data => {
-        this.setState({ movieTrailer: { ...data.videos[0] } })
+      .then(data => this.setState({ movieTrailer: { ...data.videos[0] } }))
+      .catch(error => {
+        console.log(error.message)
+        this.setState({ errorTrailer: error.message })
       })
-      .catch(error => this.setState({ errorTrailer: error.message }))
   }
 
   formatCosts = (number) => {
@@ -51,7 +53,7 @@ class MovieInfo extends Component {
         {!this.state.currentMovie.title && !this.state.error && <h1>Loading...</h1>
         }
         {this.state.currentMovie.title && !this.state.error &&
-          <section className='movie-info-section'>
+          <section className='movie-info-section' id={id}>
             <h1 className='movie-info-title'>{title}</h1>
             <div className='movie-info-container'>
               <article className="movie-info-left">

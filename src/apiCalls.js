@@ -2,7 +2,8 @@ const getAllMovies = () => {
   return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
     .then(response => {
       if (!response.ok) {
-        return `error`;
+        console.log(response)
+        return response.error;
       }
       return response.json()
     })
