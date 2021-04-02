@@ -52,6 +52,10 @@ describe('All Movies View Client-Side Error', () => {
   it('should display an error message when a data request is broken', () => {
     cy.get('.error-message').contains('Something went wrong, please refresh and try again.')
   });
+
+  it('should contain an error image', () => {
+    cy.get('img').should('have.class', 'error-icon')
+  });
 })
 
 describe('All Movies View Errors Server-Side Error', () => {
@@ -66,5 +70,9 @@ describe('All Movies View Errors Server-Side Error', () => {
 
   it('should display an error message when a data request is broken', () => {
     cy.get('.error-message').contains('Something went wrong, please refresh and try again.')
+  });
+
+  it('should contain an error image', () => {
+    cy.get('img').should('have.class', 'error-icon')
   });
 })
