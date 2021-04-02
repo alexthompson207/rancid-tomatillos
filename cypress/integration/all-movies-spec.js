@@ -1,9 +1,16 @@
 describe('All Movies View', () => {
   beforeEach(() => {
+    cy.fixture('movie-video').then((testVideo) => {
+      cy.intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919/videos', testVideo)
+    })
+    cy.fixture('movie-info').then((testMovie) => {
+      cy.intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', testMovie)
+    })
     cy.fixture('movies').then((testMovies) => {
       cy.intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', testMovies)
     })
     cy.visit('http://localhost:3000');
+
   })
 
   it('should have a title', () => {
@@ -34,8 +41,9 @@ describe('All Movies View', () => {
   });
 
   it('should have a loading message after a movie is clicked', () => {
-    cy.get('.movies-view a').first().click()
-    cy.get('h1').contains('Loading')
+
+    cy.visit('http://localhost:3000/movies/694919').get('h1').contains('Loading')
+
   });
 });
 
