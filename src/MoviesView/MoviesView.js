@@ -3,20 +3,19 @@ import './MoviesView.css';
 import MovieCard from '../MovieCard/MovieCard';
 import PropTypes from 'prop-types'
 
-const MoviesView = ({ filterMovies, allMovies, error }) => {
+const MoviesView = ({ filterMovies, allMovies, error, movieSearched }) => {
   let moviesToDisplay = [];
   if (!allMovies.length && !error) {
-    console.log('hi')
     return (
       <h1> Loading...</h1 >
     )
   }
-  if (filterMovies.length) {
+  if (filterMovies.length && movieSearched) {
     console.log(filterMovies)
     moviesToDisplay = filterMovies;
-  } else if (filterMovies === 'no match') {
+  } else if (!filterMovies.length && movieSearched) {
     console.log(filterMovies)
-    return (<h1>hello</h1>)
+    return (<h1 className='search-error'>No movies match your search, try again!</h1>)
   }
   else {
     moviesToDisplay = allMovies;

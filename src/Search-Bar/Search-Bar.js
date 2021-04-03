@@ -16,6 +16,11 @@ class SearchBar extends Component {
     this.setState({ search: event.target.value })
   }
 
+  clearSearch = (event) => {
+    event.preventDefault();
+    this.props.reset();
+    this.setState({ search: '' })
+  }
 
   render() {
     return (
@@ -24,10 +29,13 @@ class SearchBar extends Component {
           name='search-bar'
           placeholder='Search Movies'
           type='text'
+          aria-label='Search Movies'
           value={this.state.search}
           onChange={event => this.handleSearch(event)}
         />
-        <button>Button</button>
+        <button className='clear-btn'
+          onClick={event => this.clearSearch(event)}>Clear Search
+        </button>
       </form>
     )
   }

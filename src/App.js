@@ -15,7 +15,8 @@ class App extends Component {
       movies: [],
       error: '',
       search: '',
-      filteredMovies: []
+      filteredMovies: [],
+      movieSearched: false
     }
   }
 
@@ -33,12 +34,11 @@ class App extends Component {
   searchMovies = (event) => {
     const value = event.target.value
     const searchMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()));
-    if (!searchMovies.length) {
-      // console.log('no movies')
-      return 'no match'
-    }
-    this.setState({ filteredMovies: searchMovies })
+    this.setState({ filteredMovies: searchMovies, movieSearched: true })
+  }
 
+  resetMoviesView = () => {
+    this.setState({ movieSearched: false })
   }
 
   render() {
@@ -51,10 +51,11 @@ class App extends Component {
           <Route exact path='/' render={() => {
             return (
               <>
-                <SearchBar searchMovies={this.searchMovies} />
+                <SearchBar searchMovies={this.searchMovies} reset={this.resetMoviesView} />
                 <MoviesView filterMovies={this.state.filteredMovies}
                   allMovies={this.state.movies}
-                  error={this.state.error} />
+                  error={this.state.error}
+                  movieSearched={this.state.movieSearched} />
               </>
             )
           }
