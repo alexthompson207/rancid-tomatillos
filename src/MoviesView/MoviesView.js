@@ -3,9 +3,27 @@ import './MoviesView.css';
 import MovieCard from '../MovieCard/MovieCard';
 import PropTypes from 'prop-types'
 
-const MoviesView = ({ movieList }) => {
+const MoviesView = ({ filterMovies, allMovies, error }) => {
+  let moviesToDisplay = [];
+  if (!allMovies.length && !error) {
+    console.log('hi')
+    return (
+      <h1> Loading...</h1 >
+    )
+  }
+  if (filterMovies.length) {
+    console.log(filterMovies)
+    moviesToDisplay = filterMovies;
+  }
+  // } else if (!filterMovies.length) {
+  //   return (<h1>hello</h1>)
+  // } 
+  else {
+    moviesToDisplay = allMovies;
 
-  const movieCards = movieList.map(movie => {
+  }
+
+  const movieCards = moviesToDisplay.map(movie => {
     return (
       <MovieCard
         image={movie.poster_path}

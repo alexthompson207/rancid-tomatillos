@@ -32,7 +32,8 @@ class App extends Component {
 
   searchMovies = (event) => {
     const value = event.target.value
-    const searchMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()))
+    const searchMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()));
+    console.log(searchMovies);
     this.setState({ filteredMovies: searchMovies })
 
   }
@@ -42,13 +43,15 @@ class App extends Component {
       <div className="App" >
         <Nav />
         {this.state.error && <Error error={this.state.error} />}
-        {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
+        {/* {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>} */}
         <Switch>
           <Route exact path='/' render={() => {
             return (
               <>
                 <SearchBar searchMovies={this.searchMovies} />
-                <MoviesView filterMovies={this.state.filteredMovies} />
+                <MoviesView filterMovies={this.state.filteredMovies}
+                  allMovies={this.state.movies}
+                  error={this.state.error} />
               </>
             )
           }
