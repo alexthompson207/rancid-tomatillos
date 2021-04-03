@@ -14,10 +14,10 @@ const MoviesView = ({ filterMovies, allMovies, error }) => {
   if (filterMovies.length) {
     console.log(filterMovies)
     moviesToDisplay = filterMovies;
+  } else if (filterMovies === 'no match') {
+    console.log(filterMovies)
+    return (<h1>hello</h1>)
   }
-  // } else if (!filterMovies.length) {
-  //   return (<h1>hello</h1>)
-  // } 
   else {
     moviesToDisplay = allMovies;
 

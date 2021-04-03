@@ -33,7 +33,10 @@ class App extends Component {
   searchMovies = (event) => {
     const value = event.target.value
     const searchMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()));
-    console.log(searchMovies);
+    if (!searchMovies.length) {
+      // console.log('no movies')
+      return 'no match'
+    }
     this.setState({ filteredMovies: searchMovies })
 
   }
