@@ -14,8 +14,8 @@ class App extends Component {
     this.state = {
       movies: [],
       error: '',
-      searchMovies: [],
-      search: ''
+      search: '',
+      filteredMovies: []
     }
   }
 
@@ -30,14 +30,10 @@ class App extends Component {
       })
   }
 
-  handleSearch = (event) => {
-    this.setState({ search: event.target.value })
-  }
-
   searchMovies = (event) => {
-    let value = event.target.value
-    const filteredMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()))
-    this.setState({ searchMovies: filteredMovies })
+    const value = event.target.value
+    const searchMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()))
+    this.setState({ filteredMovies: searchMovies })
 
   }
 
@@ -49,13 +45,14 @@ class App extends Component {
         {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
         <Switch>
           <Route exact path='/' render={() => {
-            return(
+            return (
               <>
-                <SearchBar searchMovies={this.searchMovies} handleSearch={this.handleSearch} />
-                <MoviesView movieList={this.state.searchMovies} />
+                <SearchBar searchMovies={this.searchMovies} />
+                <MoviesView filterMovies={this.state.filteredMovies} />
               </>
-            )}
-          }/>
+            )
+          }
+          } />
           <Route exact path='/movies/:id' render={({ match }) => {
             const { id } = match.params;
             return (<MovieInfo currentMovieId={id} />)
