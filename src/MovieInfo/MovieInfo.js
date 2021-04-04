@@ -64,7 +64,7 @@ class MovieInfo extends Component {
                     <li><b>Revenue:</b> {this.formatCosts(revenue)}</li>
                   </ul>
                 </div>
-                <img className="backdrop-image" alt={title + 'poster'} src={backdrop_path} />
+                <img className="backdrop-image hidden" alt={title + 'poster'} src={backdrop_path} />
                 <div></div>
               </article>
               <article className="movie-description">

@@ -48,3 +48,15 @@
 a {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 750px) {
+  .movie-card {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .movie-card {
+    width: 80%;
+  }
+}
