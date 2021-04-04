@@ -7,12 +7,10 @@ class SearchBar extends Component {
     this.state = {
       search: '',
     }
-    console.log(props)
   }
 
   handleSearch = (event) => {
     this.props.searchMovies(event);
-    console.log(event.target.value)
     this.setState({ search: event.target.value })
   }
 

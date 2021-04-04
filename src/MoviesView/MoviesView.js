@@ -11,10 +11,8 @@ const MoviesView = ({ filterMovies, allMovies, error, movieSearched }) => {
     )
   }
   if (filterMovies.length && movieSearched) {
-    console.log(filterMovies)
     moviesToDisplay = filterMovies;
   } else if (!filterMovies.length && movieSearched) {
-    console.log(filterMovies)
     return (<h1 className='search-error'>No movies match your search, try again!</h1>)
   }
   else {
