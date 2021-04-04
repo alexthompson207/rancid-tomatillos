@@ -53,7 +53,7 @@
 
 - ![Mocha](https://img.shields.io/badge/-mocha-%238D6748?&style=for-the-badge&logo=mocha&logoColor=white)
 
-- ![Mocha](https://img.shields.io/badge/cypress%17202C.svg?&style=for-the-badge&logo=cypress&logoColor=white)
+- ![Cypress](https://img.shields.io/badge/cypress%20-%17202C.svg?&style=for-the-badge&logo=cypress&logoColor=white)
 
 ## Contributers
 * [Alex Thompson](https://github.com/alexthompson207) - Application Creator
