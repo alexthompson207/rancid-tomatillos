@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieCard.css';
 import tomato from '../images/tomato.svg';
-import badTomato from '../images/tomato-bad.svg';
+import bad from '../images/blood.svg';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
@@ -12,7 +12,7 @@ const MovieCard = ({ image, title, rating, id }) => {
   if (rating >= 5) {
     icon = tomato;
   } else {
-    icon = badTomato;
+    icon = bad;
   }
 
   return (

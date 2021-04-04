@@ -14,8 +14,9 @@ class App extends Component {
     this.state = {
       movies: [],
       error: '',
-      searchMovies: [],
-      search: ''
+      search: '',
+      filteredMovies: [],
+      movieSearched: false
     }
   }
 
@@ -30,15 +31,14 @@ class App extends Component {
       })
   }
 
-  handleSearch = (event) => {
-    this.setState({ search: event.target.value })
+  searchMovies = (event) => {
+    const value = event.target.value
+    const searchMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()));
+    this.setState({ filteredMovies: searchMovies, movieSearched: true })
   }
 
-  searchMovies = (event) => {
-    let value = event.target.value
-    const filteredMovies = this.state.movies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()))
-    this.setState({ searchMovies: filteredMovies })
-
+  resetMoviesView = () => {
+    this.setState({ movieSearched: false })
   }
 
   render() {
@@ -46,16 +46,20 @@ class App extends Component {
       <div className="App" >
         <Nav />
         {this.state.error && <Error error={this.state.error} />}
-        {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>}
+        {/* {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>} */}
         <Switch>
           <Route exact path='/' render={() => {
-            return(
+            return (
               <>
-                <SearchBar searchMovies={this.searchMovies} handleSearch={this.handleSearch} />
-                <MoviesView movieList={this.state.searchMovies} />
+                <SearchBar searchMovies={this.searchMovies} reset={this.resetMoviesView} />
+                <MoviesView filterMovies={this.state.filteredMovies}
+                  allMovies={this.state.movies}
+                  error={this.state.error}
+                  movieSearched={this.state.movieSearched} />
               </>
-            )}
-          }/>
+            )
+          }
+          } />
           <Route exact path='/movies/:id' render={({ match }) => {
             const { id } = match.params;
             return (<MovieInfo currentMovieId={id} />)
