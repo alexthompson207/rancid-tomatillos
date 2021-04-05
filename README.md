@@ -52,6 +52,11 @@ Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where
 #### Single Movie View
   - When a user finds the movie they would like to find more information on they can click the movie card and will be taken to a page that displays relevant information along with a trailer of the movie. When the user is finsihed they will be able to click the home button in the nav bar to return to all the movies. 
 
+
+### Responsive Design
+ - Responsiveness was a consideration while designing this application. Our application viewed from a mobile device:
+ <img align="center" src="https://media.giphy.com/media/pFIrISQgq9zHZftLnU/giphy.gif" width="80%">
+
 ## Learning Goals
 
 - Understand the fundamentals of React; class vs. function components, props, and Fetch requests
