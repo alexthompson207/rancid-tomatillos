@@ -28,6 +28,8 @@
 
 ## About the Project
 
+Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where users can view rated movies, search for a movie title, and click on a specific movie to view more details.
+
 
 ## Installation
 
@@ -42,6 +44,14 @@
 
 ## Functionality
 
+
+## Learning Goals
+
+- Understand the fundamentals of React; class vs. function components, props, and Fetch requests
+- Understand how to manage and update state
+- Creating a controled form
+- Create a multi-page UX using React Router
+- Testing User Stories using `Cypress`
 
 ## Future Iterations
 
