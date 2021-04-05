@@ -26,7 +26,6 @@ class App extends Component {
         this.setState({ movies: data.movies })
       })
       .catch(error => {
-        console.log(error.message)
         this.setState({ error: error.message })
       })
   }
@@ -46,7 +45,6 @@ class App extends Component {
       <div className="App" >
         <Nav />
         {this.state.error && <Error error={this.state.error} />}
-        {/* {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>} */}
         <Switch>
           <Route exact path='/' render={() => {
             return (
