@@ -6,7 +6,7 @@
   </a>
     <p align="center">
     <br />
-    <a href="https://alexthompson207.github.io/overlook/"><strong>Explore the app »</strong></a>
+    <a href="https://rancid-tomas.herokuapp.com/"><strong>Explore the app »</strong></a>
     <br />
     <br />
     </p>
