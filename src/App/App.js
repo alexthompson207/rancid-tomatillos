@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import MoviesView from './MoviesView/MoviesView';
-import MovieInfo from './MovieInfo/MovieInfo';
-import SearchBar from './Search-Bar/Search-Bar';
-import Nav from './Nav/Nav';
-import Error from './Error/Error';
-import { getAllMovies } from './apiCalls';
+import MoviesView from '../MoviesView/MoviesView';
+import MovieInfo from '../MovieInfo/MovieInfo';
+import SearchBar from '../Search-Bar/Search-Bar';
+import Nav from '../Nav/Nav';
+import Error from '../Error/Error';
+import { getAllMovies } from '../apiCalls';
 import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
@@ -26,7 +26,6 @@ class App extends Component {
         this.setState({ movies: data.movies })
       })
       .catch(error => {
-        console.log(error.message)
         this.setState({ error: error.message })
       })
   }
@@ -46,7 +45,6 @@ class App extends Component {
       <div className="App" >
         <Nav />
         {this.state.error && <Error error={this.state.error} />}
-        {/* {!this.state.movies.length && !this.state.error && <h1>Loading...</h1>} */}
         <Switch>
           <Route exact path='/' render={() => {
             return (
