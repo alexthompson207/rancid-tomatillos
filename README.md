@@ -31,6 +31,14 @@
 
 ## Installation
 
+1. Fork this repository.
+2. Clone it down to your local machine with `git clone <your SSH Key>`.
+3. Navigate into this directory with `cd rotten-tomatillos`.
+4. Run `npm install` to compile the React application.
+5. Run `npm start` to see the app running locally.
+6. Run `<your text editor> .` to see the code in your text editor.
+7. Run `npm run cypress` to see open Cypress and see all the tests.
+
 
 ## Functionality
 
