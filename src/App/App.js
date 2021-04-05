@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import MoviesView from './MoviesView/MoviesView';
-import MovieInfo from './MovieInfo/MovieInfo';
-import SearchBar from './Search-Bar/Search-Bar';
-import Nav from './Nav/Nav';
-import Error from './Error/Error';
-import { getAllMovies } from './apiCalls';
+import MoviesView from '../MoviesView/MoviesView';
+import MovieInfo from '../MovieInfo/MovieInfo';
+import SearchBar from '../Search-Bar/Search-Bar';
+import Nav from '../Nav/Nav';
+import Error from '../Error/Error';
+import { getAllMovies } from '../apiCalls';
 import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
