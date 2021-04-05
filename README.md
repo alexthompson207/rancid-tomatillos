@@ -17,8 +17,6 @@
 * [About the Project](#about-the-project)
 * [Installation](#installation)
 * [Functionality](#functionality)
-  * [Landing Page](#landing-page)
-  * [Single Movie View](#single-movie-view)
 * [Learning Goals](#learning-goals)
 * [Future Iterations](#future-iterations)
 * [Technologies Used](#technologies-used)
@@ -30,6 +28,7 @@
 
 Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where users can view rated movies, search for a movie title, and click on a specific movie to view more details.
 
+View the deployed site: [here]("https://rancid-tomas.herokuapp.com/")
 
 ## Installation
 
@@ -43,6 +42,10 @@ Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where
 
 
 ## Functionality
+* [Landing Page](#landing-page)
+* [Single Movie View](#single-movie-view)
+* [Responsive Design](#responsive-design)
+* [Accessibility](#accessibility)
 
 #### Landing Page 
   - When a user lands on the landing page they will see a full list of avaialbe movies with a search bar at the top. They will have the ability to dynamically search all movies as well as clear their search and return to all movies. 
@@ -57,6 +60,16 @@ Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where
 #### Responsive Design
  - Responsiveness was a consideration while designing this application. Our application viewed from a mobile device:
  <img src="https://media.giphy.com/media/pFIrISQgq9zHZftLnU/giphy.gif" width="1440">
+
+#### Accessibility 
+
+We made accessibility a priority in our application. Rancid Tomatillos recieved a 97% acecessibility audit from Chrome's Lighthouse tool. Also using the Wave extension, our application has zero errors and contrast errors. 
+
+#### Error Handling
+To maintain a better user experience, we implemented dynamic error handling, so that a user will receive a unique error message based on the type of error.
+
+#### Loading Screen
+To create a more positive user experience, we implemented a loading message that will display while information is being retrieved from the API.
 
 ## Learning Goals
 
