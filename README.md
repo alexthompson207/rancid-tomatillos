@@ -1,7 +1,7 @@
 <h1 align="left">Rancid Tomatillos</h1>
 
 <p align="center">
-  <a href="https://github.com/alexthompson207/rancid-tomatillos">
+  <a href="https://rancid-tomas.herokuapp.com/">
     <img src="./src/images/tomato.svg" alt="Image of a Green Tomato" width="80" height="80">
   </a>
     <p align="center">
