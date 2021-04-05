@@ -28,7 +28,7 @@
 
 Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where users can view rated movies, search for a movie title, and click on a specific movie to view more details.
 
-View the deployed site: [here]("https://rancid-tomas.herokuapp.com/")
+View the deployed site: [here](https://rancid-tomas.herokuapp.com/)
 
 ## Installation
 
@@ -46,6 +46,8 @@ View the deployed site: [here]("https://rancid-tomas.herokuapp.com/")
 * [Single Movie View](#single-movie-view)
 * [Responsive Design](#responsive-design)
 * [Accessibility](#accessibility)
+* [Error Handling](#error-handling)
+* [Loading Screen](#loading-screen)
 
 #### Landing Page 
   - When a user lands on the landing page they will see a full list of avaialbe movies with a search bar at the top. They will have the ability to dynamically search all movies as well as clear their search and return to all movies. 
