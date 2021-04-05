@@ -47,6 +47,8 @@ Rancid Tomatillos is a spin-off of Rotten Tomatos, which is an application where
 #### Landing Page 
   - When a user lands on the landing page they will see a full list of avaialbe movies with a search bar at the top. They will have the ability to dynamically search all movies as well as clear their search and return to all movies. 
 
+<img src="https://media.giphy.com/media/SSHYUuzdr0ZrQ9F21v/giphy.gif" width="80%">
+
 #### Single Movie View
   - When a user finds the movie they would like to find more information on they can click the movie card and will be taken to a page that displays relevant information along with a trailer of the movie. When the user is finsihed they will be able to click the home button in the nav bar to return to all the movies. 
 
